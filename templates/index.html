@@ -1,115 +1,119 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <title>Guess Game</title>
+<title>Guess Game</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet"
+      href="{{ url_for('static',
+      filename='css/style.css') }}">
+```
 
 </head>
 
 <body>
 
-    <h1>🎮 Number Guess Game</h1>
+```
+<div class="sound-controls">
 
-    <div class="menu-container">
+    <button
+    id="musicBtn"
+    onclick="toggleMusic()">
 
-        <a href="/single">
-            <button onclick="playClick()">
-                🎯 Single Player
-            </button>
-        </a>
-
-        <a href="/create-room">
-            <button onclick="playClick()">
-                🏠 Create Room
-            </button>
-        </a>
-
-        <a href="/join-room">
-            <button onclick="playClick()">
-                👥 Join Room
-            </button>
-        </a>
-
-        <a href="/hall">
-            <button onclick="playClick()">
-                🏆 Hall Of Fame
-            </button>
-        </a>
-
-    </div>
-
-    <audio id="bgMusic" loop>
-
-        <source src="{{ url_for('static', filename='music/bg_music.mp3') }}" type="audio/mpeg">
-
-    </audio>
-
-    <button id="musicBtn" onclick="toggleMusic()">
-
-        🔊 Music ON
+        🎵 Music ON
 
     </button>
 
-    <audio id="clickSound">
+    <button
+    id="soundBtn"
+    onclick="toggleSound()">
 
-        <source src="{{ url_for('static',
-    filename='sounds/click.mp3') }}">
+        🔊 Sound ON
 
-    </audio>
+    </button>
 
-    <script>
+</div>
 
-        const music =
-            document.getElementById("bgMusic");
+<h1>🎮 Number Guess Game</h1>
 
-        music.volume = 0.3;
+<div class="menu-container">
 
-        let isPlaying = false;
+    <a href="/single">
 
-        function toggleMusic() {
+        <button onclick="playClick()">
 
-            if (isPlaying) {
+            🎯 Single Player
 
-                music.pause();
+        </button>
 
-                document
-                    .getElementById("musicBtn")
-                    .innerHTML =
-                    "🔇 Music OFF";
+    </a>
 
-            }
+    <a href="/create-room">
 
-            else {
+        <button onclick="playClick()">
 
-                music.play();
+            🏠 Create Room
 
-                document
-                    .getElementById("musicBtn")
-                    .innerHTML =
-                    "🔊 Music ON";
+        </button>
 
-            }
+    </a>
 
-            isPlaying = !isPlaying;
+    <a href="/join-room">
 
-        }
+        <button onclick="playClick()">
 
-        function playClick() {
+            👥 Join Room
 
-            document
-                .getElementById("clickSound")
-                .play();
+        </button>
 
-        }
+    </a>
 
-    </script>
+    <a href="/hall">
+
+        <button onclick="playClick()">
+
+            🏆 Hall Of Fame
+
+        </button>
+
+    </a>
+
+</div>
+
+<audio
+id="bgMusic"
+loop>
+
+    <source
+    src="{{ url_for('static',
+    filename='music/bg_music.mp3') }}"
+    type="audio/mpeg">
+
+</audio>
+
+<audio
+id="clickSound">
+
+    <source
+    src="{{ url_for('static',
+    filename='sounds/click.mp3') }}"
+    type="audio/mpeg">
+
+</audio>
+
+<script
+src="{{ url_for('static',
+filename='js/sound.js') }}">
+</script>
+```
 
 </body>
 

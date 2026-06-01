@@ -1,109 +1,254 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room {{ room_id }}</title>
 
-    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>Room {{ room_id }}</title>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+<link rel="stylesheet"
+    href="{{ url_for('static',
+    filename='css/style.css') }}">
+```
+
 </head>
 
 <body>
 
-    <h1>Room: {{ room_id }}</h1>
+```
+<h1>
 
-    <h2>Player: {{ username }}</h2>
+    🏠 Room:
+    {{ room_id }}
 
-    <h3>Players In Room</h3>
+</h1>
 
-    <ul id="players"></ul>
+<h2>
 
-    <hr>
+    👤 Player:
+    {{ username }}
 
-    <input type="number" id="guess" placeholder="Enter Number">
+</h2>
 
-    <button onclick="sendGuess()", onclick="playClick()">
-        Guess
+<h3>
+
+    👥 Players In Room
+
+</h3>
+
+<ul id="players"></ul>
+
+<hr>
+
+<input
+    type="number"
+    id="guess"
+    placeholder="🎯 Enter Number">
+
+<br><br>
+
+<button
+    onclick="playClick(); sendGuess();">
+
+    🎯 Guess
+
+</button>
+
+<br><br>
+
+<a href="/">
+
+    <button
+        onclick="playClick()">
+
+        🏠 Home
+
     </button>
 
-    <h2 id="result"></h2>
+</a>
 
-    <h1 id="winner"></h1>
+<h2 id="result"></h2>
 
-    <script>
+<h1 id="winner"></h1>
 
-        console.log("JS Loaded");
+<!-- Sound Controls -->
 
-        const socket = io();
+<div class="sound-controls">
 
-        console.log(socket);
+    <button
+        id="musicBtn"
+        onclick="toggleMusic()">
 
-        socket.on("connect", () => {
+        🎵 Music ON
 
-            console.log("Connected");
+    </button>
 
-        });
+    <button
+        id="soundBtn"
+        onclick="toggleSound()">
 
-        socket.on("connect_error", (err) => {
+        🔊 Sound ON
 
-            console.log("ERROR:", err);
+    </button>
 
-        });
+</div>
 
-        console.log("Players received:", players);
+<!-- Background Music -->
 
-        socket.on("update_players", (players) => {
+<audio
+    id="bgMusic"
+    loop>
+
+    <source
+        src="{{ url_for('static',
+        filename='music/bg_music.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+<!-- Click Sound -->
+
+<audio
+    id="clickSound">
+
+    <source
+        src="{{ url_for('static',
+        filename='sounds/click.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+<!-- Sound JS -->
+
+<script
+    src="{{ url_for('static',
+    filename='js/sound.js') }}">
+</script>
+
+<script>
+
+    const socket = io();
+
+    socket.on(
+        "connect",
+        () => {
+
+            console.log(
+                "Connected"
+            );
+
+        }
+    );
+
+    socket.on(
+        "connect_error",
+        (err) => {
+
+            console.log(
+                "ERROR:",
+                err
+            );
+
+        }
+    );
+
+    socket.on(
+        "update_players",
+        (players) => {
 
             const list =
-                document.getElementById("players");
+            document.getElementById(
+                "players"
+            );
 
             list.innerHTML = "";
 
-            players.forEach(player => {
+            players.forEach(
+                player => {
 
-                const li =
-                    document.createElement("li");
+                    const li =
+                    document.createElement(
+                        "li"
+                    );
 
-                li.innerText = player;
+                    li.innerText =
+                    player;
 
-                list.appendChild(li);
+                    list.appendChild(
+                        li
+                    );
 
-            });
-
-        });
-
-        socket.on("guess_result", (data) => {
-
-            document.getElementById("result")
-                .innerText = data.message;
-
-        });
-
-        socket.on("winner", (data) => {
-
-            document.getElementById("winner")
-                .innerText =
-                `🏆 Winner: ${data.winner} | Attempts: ${data.attempts}`;
-
-        });
-
-        function sendGuess() {
-
-            const guess =
-                document.getElementById("guess").value;
-
-            socket.emit("guess", {
-
-                username: username,
-                room: room,
-                guess: guess
-
-            });
+                }
+            );
 
         }
+    );
 
-    </script>
+    socket.on(
+        "guess_result",
+        (data) => {
+
+            document
+            .getElementById(
+                "result"
+            )
+            .innerText =
+            data.message;
+
+        }
+    );
+
+    socket.on(
+        "winner",
+        (data) => {
+
+            document
+            .getElementById(
+                "winner"
+            )
+            .innerText =
+            `🏆 Winner: ${data.winner} | Attempts: ${data.attempts}`;
+
+        }
+    );
+
+    function sendGuess(){
+
+        const guess =
+        document
+        .getElementById(
+            "guess"
+        )
+        .value;
+
+        socket.emit(
+            "guess",
+            {
+
+                username:
+                "{{ username }}",
+
+                room:
+                "{{ room_id }}",
+
+                guess:
+                guess
+
+            }
+        );
+
+    }
+
+</script>
+```
 
 </body>
 

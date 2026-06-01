@@ -1,130 +1,206 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Hall Of Fame</title>
+```
+<meta charset="UTF-8">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>Hall Of Fame</title>
+
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+```
 
 </head>
 
 <body>
 
-    <h1>🏆 Hall Of Fame</h1>
+```
+<h1>🏆 Hall Of Fame</h1>
 
-    <hr>
+<hr>
 
-    <h2>🎯 Single Player Legends</h2>
+<h2>🎯 Single Player Legends</h2>
 
-    {% if single_players %}
+{% if single_players %}
 
-    <ul>
+<ul>
 
-        {% for player in single_players %}
+    {% for player in single_players %}
 
-        <li>
+    <li>
 
-            👑 {{ player.name }}
+        👑 {{ player.name }}
 
-            |
+        |
 
-            Best Attempt:
-            {{ player.best_attempt }}
+        Best Attempt:
+        {{ player.best_attempt }}
 
-            |
+        |
 
-            Records:
-            {{ player.records }}
+        Records:
+        {{ player.records }}
 
-        </li>
+    </li>
 
-        {% endfor %}
+    {% endfor %}
 
-    </ul>
+</ul>
 
-    {% else %}
+{% else %}
 
-    <p>No Single Player Legends Yet</p>
+<p>No Single Player Legends Yet</p>
 
-    {% endif %}
+{% endif %}
 
-    <hr>
+<hr>
 
-    <h2>🎮 Multiplayer Legends</h2>
+<h2>🎮 Multiplayer Legends</h2>
 
-    {% if multiplayer_players %}
+{% if multiplayer_players %}
 
-    <ul>
+<ul>
 
-        {% for player in multiplayer_players %}
+    {% for player in multiplayer_players %}
 
-        <li>
+    <li>
 
-            🏅 {{ player.name }}
+        🏅 {{ player.name }}
 
-            |
+        |
 
-            Best Attempt:
-            {{ player.best_attempt }}
+        Best Attempt:
+        {{ player.best_attempt }}
 
-            |
+        |
 
-            Records:
-            {{ player.records }}
+        Records:
+        {{ player.records }}
 
-        </li>
+    </li>
 
-        {% endfor %}
+    {% endfor %}
 
-    </ul>
+</ul>
 
-    {% else %}
+{% else %}
 
-    <p>No Multiplayer Legends Yet</p>
+<p>No Multiplayer Legends Yet</p>
 
-    {% endif %}
+{% endif %}
 
-    <br><br>
+<br><br>
 
-    <a href="/">
-        <button onclick="playClick()">
-            🏠 Home
-        </button>
-    </a>
+<a href="/">
 
-    <audio id="hallSound">
-        <source src="{{ url_for('static', filename='sounds/hall.mp3') }}" type="audio/mpeg">
-    </audio>
+    <button
+        onclick="playClick()">
 
-    <audio id="clickSound">
-        <source src="{{ url_for('static', filename='sounds/click.mp3') }}" type="audio/mpeg">
-    </audio>
+        🏠 Home
 
-    <script>
+    </button>
 
-        function playClick() {
+</a>
 
-            document
-                .getElementById("clickSound")
-                .play();
+<!-- Sound Controls -->
+
+<div class="sound-controls">
+
+    <button
+        id="musicBtn"
+        onclick="toggleMusic()">
+
+        🎵 Music ON
+
+    </button>
+
+    <button
+        id="soundBtn"
+        onclick="toggleSound()">
+
+        🔊 Sound ON
+
+    </button>
+
+</div>
+
+<!-- Background Music -->
+
+<audio
+    id="bgMusic"
+    loop>
+
+    <source
+        src="{{ url_for('static',
+        filename='music/bg_music.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+<!-- Click Sound -->
+
+<audio
+    id="clickSound">
+
+    <source
+        src="{{ url_for('static',
+        filename='sounds/click.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+<!-- Hall Sound -->
+
+<audio
+    id="hallSound">
+
+    <source
+        src="{{ url_for('static',
+        filename='sounds/hall.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+<!-- Sound JS -->
+
+<script
+    src="{{ url_for('static',
+    filename='js/sound.js') }}">
+</script>
+
+<script>
+
+    setTimeout(function(){
+
+        if(
+            localStorage.getItem(
+                "soundEnabled"
+            ) !== "false"
+        ){
+
+            const hall =
+            document.getElementById(
+                "hallSound"
+            );
+
+            if(hall){
+
+                hall.play();
+
+            }
 
         }
 
-        window.onload = function () {
+    }, 500);
 
-            setTimeout(function () {
-
-                document
-                    .getElementById("hallSound")
-                    .play();
-
-            }, 300);
-
-        }
-
-    </script>
+</script>
+```
 
 </body>
 

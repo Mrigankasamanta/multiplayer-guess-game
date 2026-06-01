@@ -1,89 +1,201 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Single Player</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>Single Player</title>
+
+<link rel="stylesheet"
+    href="{{ url_for('static',
+    filename='css/style.css') }}">
+```
+
 </head>
 
 <body>
 
-    <h1>🎮 Single Player Mode</h1>
+```
+<h1>
 
-    <form method="POST">
+    🎮 Single Player Mode
 
-        {% if not session.get("player_name") %}
+</h1>
 
-        <input type="text" name="name" placeholder="Your Name" required>
+<form method="POST">
 
-        <br><br>
+    {% if not session.get("player_name") %}
 
-        {% else %}
+    <input
+        type="text"
+        name="name"
+        placeholder="👤 Your Name"
+        required>
 
-        <h3>👤 Player: {{ session.get("player_name") }}</h3>
+    <br><br>
 
-        {% endif %}
+    {% else %}
 
-        <input type="number" name="guess" placeholder="Enter Number (1-100)" required>
+    <h3>
 
-        <br><br>
+        👤 Player:
+        {{ session.get("player_name") }}
 
-        <button type="submit", onclick="playClick()">
-            Guess
-        </button>
+    </h3>
 
-    </form>
+    {% endif %}
 
-    <br>
+    <input
+        type="number"
+        name="guess"
+        placeholder="🎯 Enter Number (1-100)"
+        required>
 
-    <h2>{{ message }}</h2>
+    <br><br>
 
-    <hr>
+    <button
+        type="submit"
+        onclick="playClick()">
 
-    <h3>🏆 Top 5 Scores</h3>
+        🎯 Guess
 
-    <table border="1">
+    </button>
 
-        <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Attempts</th>
-        </tr>
+</form>
 
-        {% for score in scores %}
+<br>
 
-        <tr>
-            <td>{{ loop.index }}</td>
-            <td>{{ score.name }}</td>
-            <td>{{ score.score }}</td>
-        </tr>
+<h2>
 
-        {% endfor %}
+    {{ message }}
 
-    </table>
+</h2>
 
-    <hr>
+<hr>
 
-    <form action="/reset-player" method="POST">
+<h3>
 
-        <button type="submit", onclick="playClick()">
-            Change Player
-        </button>
+    🏆 Top 5 Scores
 
-    </form>
+</h3>
 
-    <br>
+<table border="1">
 
-    <div class="home-btn">
+    <tr>
 
-        <a href="/">
-            <button onclick="playClick()">
-                🏠 Home
-            </button>
-        </a>
+        <th>Rank</th>
 
-    </div>
+        <th>Name</th>
+
+        <th>Attempts</th>
+
+    </tr>
+
+    {% for score in scores %}
+
+    <tr>
+
+        <td>{{ loop.index }}</td>
+
+        <td>{{ score.name }}</td>
+
+        <td>{{ score.score }}</td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+<hr>
+
+<form
+    action="/reset-player"
+    method="POST">
+
+    <button
+        type="submit"
+        onclick="playClick()">
+
+        🔄 Change Player
+
+    </button>
+
+</form>
+
+<br>
+
+<a href="/">
+
+    <button
+        onclick="playClick()">
+
+        🏠 Home
+
+    </button>
+
+</a>
+
+<!-- Sound Controls -->
+
+<div class="sound-controls">
+
+    <button
+        id="musicBtn"
+        onclick="toggleMusic()">
+
+        🎵 Music ON
+
+    </button>
+
+    <button
+        id="soundBtn"
+        onclick="toggleSound()">
+
+        🔊 Sound ON
+
+    </button>
+
+</div>
+
+<!-- Background Music -->
+
+<audio
+    id="bgMusic"
+    loop>
+
+    <source
+        src="{{ url_for('static',
+        filename='music/bg_music.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+<!-- Click Sound -->
+
+<audio
+    id="clickSound">
+
+    <source
+        src="{{ url_for('static',
+        filename='sounds/click.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+<!-- Sound JS -->
+
+<script
+    src="{{ url_for('static',
+    filename='js/sound.js') }}">
+</script>
+```
 
 </body>
 

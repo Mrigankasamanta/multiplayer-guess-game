@@ -2,19 +2,29 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <title>Guess Room</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
 
 <body>
 
     <h1>🎯 Guess Players</h1>
 
-    <h2>{{ player_name }}</h2>
+    <h2>
+        👤 {{ player_name }}
+    </h2>
 
     <h3>
-        Total Attempts:
+        🔢 Total Attempts:
         {{ attempts }}
     </h3>
 
@@ -24,23 +34,101 @@
 
     <p>
 
-        {{ target }}
+        <strong>
+            {{ target }}
+        </strong>
 
         <a href="/guess/{{ room_code }}/{{ player_name }}/{{ target }}">
+
             <button onclick="playClick()">
-                Guess
+
+                🎯 Guess
+
             </button>
+
         </a>
+
     </p>
 
     {% endfor %}
 
-    <audio id="wrongSound">
+    <br>
 
-        <source src="{{ url_for('static',
-    filename='sounds/wrong.mp3') }}">
+    <a href="/">
+
+        <button onclick="playClick()">
+
+            🏠 Home
+
+        </button>
+
+    </a>
+
+    <!-- Music Controls -->
+
+    <div class="sound-controls">
+
+        <button
+            id="musicBtn"
+            onclick="toggleMusic()">
+
+            🎵 Music ON
+
+        </button>
+
+        <button
+            id="soundBtn"
+            onclick="toggleSound()">
+
+            🔊 Sound ON
+
+        </button>
+
+    </div>
+
+    <!-- Background Music -->
+
+    <audio
+        id="bgMusic"
+        loop>
+
+        <source
+            src="{{ url_for('static',
+            filename='music/bg_music.mp3') }}"
+            type="audio/mpeg">
 
     </audio>
+
+    <!-- Click Sound -->
+
+    <audio
+        id="clickSound">
+
+        <source
+            src="{{ url_for('static',
+            filename='sounds/click.mp3') }}"
+            type="audio/mpeg">
+
+    </audio>
+
+    <!-- Wrong Sound -->
+
+    <audio
+        id="wrongSound">
+
+        <source
+            src="{{ url_for('static',
+            filename='sounds/wrong.mp3') }}"
+            type="audio/mpeg">
+
+    </audio>
+
+    <!-- Sound JS -->
+
+    <script
+        src="{{ url_for('static',
+        filename='js/sound.js') }}">
+    </script>
 
 </body>
 

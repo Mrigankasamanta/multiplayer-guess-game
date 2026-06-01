@@ -1,78 +1,197 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Results</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>Results</title>
+
+<link rel="stylesheet"
+    href="{{ url_for('static',
+    filename='css/style.css') }}">
+```
+
 </head>
 
 <body>
 
-    <h1>🏆 Final Results</h1>
+```
+<h1>🏆 Final Results</h1>
 
-    <h1 class="winner">
-        🏆 Winner: {{ winner }}
-    </h1>
+<h1 class="winner">
 
-    <hr>
+    🏆 Winner:
+    {{ winner }}
 
-    {% for player in leaderboard %}
+</h1>
 
-    <hr>
+<hr>
 
-    <h3>
-        {{ loop.index }}.
-        {{ player[0] }}
-    </h3>
+{% for player in leaderboard %}
 
-    <p>
-        Total Attempts:
-        {{ player[1]["attempts"] }}
-    </p>
+<hr>
 
-    <ul>
+<h3>
 
-        {% for target, count in player[1]["guess_attempts"].items() %}
+    {{ loop.index }}.
 
-        <li>
-            {{ target }}
-            →
-            {{ count }}
-            attempts
-        </li>
+    {{ player[0] }}
 
-        {% endfor %}
+</h3>
 
-    </ul>
+<p>
+
+    🔢 Total Attempts:
+
+    {{ player[1]["attempts"] }}
+
+</p>
+
+<ul>
+
+    {% for target, count in player[1]["guess_attempts"].items() %}
+
+    <li>
+
+        {{ target }}
+
+        →
+
+        {{ count }}
+
+        attempts
+
+    </li>
 
     {% endfor %}
 
-    <br><br>
+</ul>
 
-    <a href="/">
-        <button onclick="playClick()">
-            🏠 Home
-        </button>
-    </a>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+{% endfor %}
 
-    <script>
+<br><br>
 
-        confetti({
-            particleCount: 200,
-            spread: 120,
-            origin: { y: 0.6 }
-        });
+<a href="/">
 
-    </script>
+    <button onclick="playClick()">
 
-    <audio id="winSound" autoplay>
+        🏠 Home
 
-        <source src="{{ url_for('static',
-    filename='sounds/win.mp3') }}">
+    </button>
 
-    </audio>
+</a>
+
+<!-- Sound Controls -->
+
+<div class="sound-controls">
+
+    <button
+        id="musicBtn"
+        onclick="toggleMusic()">
+
+        🎵 Music ON
+
+    </button>
+
+    <button
+        id="soundBtn"
+        onclick="toggleSound()">
+
+        🔊 Sound ON
+
+    </button>
+
+</div>
+
+<!-- Background Music -->
+
+<audio
+    id="bgMusic"
+    loop>
+
+    <source
+        src="{{ url_for('static',
+        filename='music/bg_music.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+<!-- Click Sound -->
+
+<audio
+    id="clickSound">
+
+    <source
+        src="{{ url_for('static',
+        filename='sounds/click.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+<!-- Win Sound -->
+
+<audio
+    id="winSound">
+
+    <source
+        src="{{ url_for('static',
+        filename='sounds/win.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+<!-- Confetti -->
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+
+    confetti({
+
+        particleCount: 200,
+
+        spread: 120,
+
+        origin: {
+            y: 0.6
+        }
+
+    });
+
+    if(
+        localStorage.getItem(
+            "soundEnabled"
+        ) !== "false"
+    ){
+
+        const win =
+        document.getElementById(
+            "winSound"
+        );
+
+        if(win){
+
+            win.play();
+
+        }
+
+    }
+
+</script>
+
+<!-- Sound JS -->
+
+<script
+    src="{{ url_for('static',
+    filename='js/sound.js') }}">
+</script>
+```
 
 </body>
 

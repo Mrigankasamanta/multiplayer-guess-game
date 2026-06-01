@@ -1,19 +1,106 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waiting</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>Waiting</title>
+
+<link rel="stylesheet"
+    href="{{ url_for('static',
+    filename='css/style.css') }}">
+```
+
 </head>
 
 <body>
 
-    <h1>✅ You Finished!</h1>
+```
+<h1>
 
-    <h2>
-        Waiting For Other Players...
-    </h2>
+    ✅ You Finished!
+
+</h1>
+
+<h2>
+
+    ⏳ Waiting For Other Players...
+
+</h2>
+
+<br>
+
+<a href="/">
+
+    <button
+        onclick="playClick()">
+
+        🏠 Home
+
+    </button>
+
+</a>
+
+<!-- Sound Controls -->
+
+<div class="sound-controls">
+
+    <button
+        id="musicBtn"
+        onclick="toggleMusic()">
+
+        🎵 Music ON
+
+    </button>
+
+    <button
+        id="soundBtn"
+        onclick="toggleSound()">
+
+        🔊 Sound ON
+
+    </button>
+
+</div>
+
+<!-- Background Music -->
+
+<audio
+    id="bgMusic"
+    loop>
+
+    <source
+        src="{{ url_for('static',
+        filename='music/bg_music.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+<!-- Click Sound -->
+
+<audio
+    id="clickSound">
+
+    <source
+        src="{{ url_for('static',
+        filename='sounds/click.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+<!-- Sound JS -->
+
+<script
+    src="{{ url_for('static',
+    filename='js/sound.js') }}">
+</script>
+```
 
 </body>
 

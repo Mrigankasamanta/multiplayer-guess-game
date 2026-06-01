@@ -1,66 +1,172 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiplayer Game</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>Multiplayer Game</title>
+
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+```
+
 </head>
 
 <body>
 
-    <h1 class="game-title">
-        🎮 Multiplayer Guess Game
-    </h1>
+```
+<h1 class="game-title">
 
-    <h2>Room: {{ room_code }}</h2>
+    🎮 Multiplayer Guess Game
 
-    <h3>Player: {{ player_name }}</h3>
+</h1>
 
-    <a href="/set-secret/{{ room_code }}/{{ player_name }}">
-        <button onclick="playClick()">
-            🔒 Set Secret Number
-        </button>
-    </a>
+<h2>
 
-    <br><br>
+    🏠 Room:
+    {{ room_code }}
 
-    <a href="/start-game/{{ room_code }}/{{ player_name }}">
-        <button onclick="playClick()">
-            ▶ Start Game
-        </button>
-    </a>
+</h2>
 
-    <hr>
+<h3>
 
-    <h3>Players In Room</h3>
+    👤 Player:
+    {{ player_name }}
 
-    {% for player, data in players.items() %}
+</h3>
 
-    <p>
-        👤 {{ player }}
-    </p>
+<a href="/set-secret/{{ room_code }}/{{ player_name }}">
 
-    {% endfor %}
+    <button onclick="playClick()">
 
-    <hr>
+        🔒 Set Secret Number
 
-    <h2>{{ message }}</h2>
+    </button>
 
-    <br>
+</a>
 
-    <a href="/">
-        <button onclick="playClick()">
-            🏠 Home
-        </button>
-    </a>
+<br><br>
 
-    <audio id="joinSound" autoplay>
+<a href="/start-game/{{ room_code }}/{{ player_name }}">
 
-        <source src="{{ url_for('static',
-    filename='sounds/join.mp3') }}">
+    <button onclick="playClick()">
 
-    </audio>
+        ▶ Start Game
+
+    </button>
+
+</a>
+
+<hr>
+
+<h3>
+
+    👥 Players In Room
+
+</h3>
+
+{% for player, data in players.items() %}
+
+<p>
+
+    👤 {{ player }}
+
+</p>
+
+{% endfor %}
+
+<hr>
+
+<h2>
+
+    {{ message }}
+
+</h2>
+
+<br>
+
+<a href="/">
+
+    <button onclick="playClick()">
+
+        🏠 Home
+
+    </button>
+
+</a>
+
+<!-- Sound Controls -->
+
+<div class="sound-controls">
+
+    <button
+        id="musicBtn"
+        onclick="toggleMusic()">
+
+        🎵 Music ON
+
+    </button>
+
+    <button
+        id="soundBtn"
+        onclick="toggleSound()">
+
+        🔊 Sound ON
+
+    </button>
+
+</div>
+
+<!-- Background Music -->
+
+<audio
+    id="bgMusic"
+    loop>
+
+    <source
+        src="{{ url_for('static',
+        filename='music/bg_music.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+<!-- Click Sound -->
+
+<audio
+    id="clickSound">
+
+    <source
+        src="{{ url_for('static',
+        filename='sounds/click.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+<!-- Join Sound -->
+
+<audio
+    id="joinSound">
+
+    <source
+        src="{{ url_for('static',
+        filename='sounds/join.mp3') }}"
+        type="audio/mpeg">
+
+</audio>
+
+<!-- Sound JS -->
+
+<script
+    src="{{ url_for('static',
+    filename='js/sound.js') }}">
+</script>
+```
 
 </body>
 
