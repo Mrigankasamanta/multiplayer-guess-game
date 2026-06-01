@@ -27,13 +27,20 @@
         {{ target }}
 
         <a href="/guess/{{ room_code }}/{{ player_name }}/{{ target }}">
-            <button>
+            <button onclick="playClick()">
                 Guess
             </button>
         </a>
     </p>
 
     {% endfor %}
+
+    <audio id="wrongSound">
+
+        <source src="{{ url_for('static',
+    filename='sounds/wrong.mp3') }}">
+
+    </audio>
 
 </body>
 

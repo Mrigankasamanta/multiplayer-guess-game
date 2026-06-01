@@ -6,8 +6,7 @@
 
     <title>Hall Of Fame</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
 </head>
 
@@ -21,33 +20,33 @@
 
     {% if single_players %}
 
-        <ul>
+    <ul>
 
         {% for player in single_players %}
 
-            <li>
+        <li>
 
-                👑 {{ player.name }}
+            👑 {{ player.name }}
 
-                |
+            |
 
-                Best Attempt:
-                {{ player.best_attempt }}
+            Best Attempt:
+            {{ player.best_attempt }}
 
-                |
+            |
 
-                Records:
-                {{ player.records }}
+            Records:
+            {{ player.records }}
 
-            </li>
+        </li>
 
         {% endfor %}
 
-        </ul>
+    </ul>
 
     {% else %}
 
-        <p>No Single Player Legends Yet</p>
+    <p>No Single Player Legends Yet</p>
 
     {% endif %}
 
@@ -57,43 +56,75 @@
 
     {% if multiplayer_players %}
 
-        <ul>
+    <ul>
 
         {% for player in multiplayer_players %}
 
-            <li>
+        <li>
 
-                🏅 {{ player.name }}
+            🏅 {{ player.name }}
 
-                |
+            |
 
-                Best Attempt:
-                {{ player.best_attempt }}
+            Best Attempt:
+            {{ player.best_attempt }}
 
-                |
+            |
 
-                Records:
-                {{ player.records }}
+            Records:
+            {{ player.records }}
 
-            </li>
+        </li>
 
         {% endfor %}
 
-        </ul>
+    </ul>
 
     {% else %}
 
-        <p>No Multiplayer Legends Yet</p>
+    <p>No Multiplayer Legends Yet</p>
 
     {% endif %}
 
     <br><br>
 
     <a href="/">
-        <button>
+        <button onclick="playClick()">
             🏠 Home
         </button>
     </a>
+
+    <audio id="hallSound">
+        <source src="{{ url_for('static', filename='sounds/hall.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <audio id="clickSound">
+        <source src="{{ url_for('static', filename='sounds/click.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <script>
+
+        function playClick() {
+
+            document
+                .getElementById("clickSound")
+                .play();
+
+        }
+
+        window.onload = function () {
+
+            setTimeout(function () {
+
+                document
+                    .getElementById("hallSound")
+                    .play();
+
+            }, 300);
+
+        }
+
+    </script>
 
 </body>
 

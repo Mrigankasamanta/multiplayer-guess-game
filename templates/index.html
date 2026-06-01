@@ -5,13 +5,11 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Guess Game</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
 </head>
 
@@ -22,30 +20,96 @@
     <div class="menu-container">
 
         <a href="/single">
-            <button>
+            <button onclick="playClick()">
                 🎯 Single Player
             </button>
         </a>
 
         <a href="/create-room">
-            <button>
+            <button onclick="playClick()">
                 🏠 Create Room
             </button>
         </a>
 
         <a href="/join-room">
-            <button>
+            <button onclick="playClick()">
                 👥 Join Room
             </button>
         </a>
 
         <a href="/hall">
-            <button>
+            <button onclick="playClick()">
                 🏆 Hall Of Fame
             </button>
         </a>
 
     </div>
+
+    <audio id="bgMusic" loop>
+
+        <source src="{{ url_for('static', filename='music/bg_music.mp3') }}" type="audio/mpeg">
+
+    </audio>
+
+    <button id="musicBtn" onclick="toggleMusic()">
+
+        🔊 Music ON
+
+    </button>
+
+    <audio id="clickSound">
+
+        <source src="{{ url_for('static',
+    filename='sounds/click.mp3') }}">
+
+    </audio>
+
+    <script>
+
+        const music =
+            document.getElementById("bgMusic");
+
+        music.volume = 0.3;
+
+        let isPlaying = false;
+
+        function toggleMusic() {
+
+            if (isPlaying) {
+
+                music.pause();
+
+                document
+                    .getElementById("musicBtn")
+                    .innerHTML =
+                    "🔇 Music OFF";
+
+            }
+
+            else {
+
+                music.play();
+
+                document
+                    .getElementById("musicBtn")
+                    .innerHTML =
+                    "🔊 Music ON";
+
+            }
+
+            isPlaying = !isPlaying;
+
+        }
+
+        function playClick() {
+
+            document
+                .getElementById("clickSound")
+                .play();
+
+        }
+
+    </script>
 
 </body>
 

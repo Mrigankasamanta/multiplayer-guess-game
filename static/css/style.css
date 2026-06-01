@@ -405,3 +405,19 @@ table {
     }
 
 }
+
+#musicBtn{
+
+    position:fixed;
+
+    top:20px;
+
+    right:20px;
+
+    z-index:999;
+
+    width:auto;
+
+    padding:10px 15px;
+
+}

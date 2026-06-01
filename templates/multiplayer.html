@@ -18,7 +18,7 @@
     <h3>Player: {{ player_name }}</h3>
 
     <a href="/set-secret/{{ room_code }}/{{ player_name }}">
-        <button>
+        <button onclick="playClick()">
             🔒 Set Secret Number
         </button>
     </a>
@@ -26,7 +26,7 @@
     <br><br>
 
     <a href="/start-game/{{ room_code }}/{{ player_name }}">
-        <button>
+        <button onclick="playClick()">
             ▶ Start Game
         </button>
     </a>
@@ -50,8 +50,17 @@
     <br>
 
     <a href="/">
-        Home
+        <button onclick="playClick()">
+            🏠 Home
+        </button>
     </a>
+
+    <audio id="joinSound" autoplay>
+
+        <source src="{{ url_for('static',
+    filename='sounds/join.mp3') }}">
+
+    </audio>
 
 </body>
 

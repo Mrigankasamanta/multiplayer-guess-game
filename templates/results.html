@@ -51,7 +51,7 @@
     <br><br>
 
     <a href="/">
-        <button>
+        <button onclick="playClick()">
             🏠 Home
         </button>
     </a>
@@ -66,6 +66,13 @@
         });
 
     </script>
+
+    <audio id="winSound" autoplay>
+
+        <source src="{{ url_for('static',
+    filename='sounds/win.mp3') }}">
+
+    </audio>
 
 </body>
 
