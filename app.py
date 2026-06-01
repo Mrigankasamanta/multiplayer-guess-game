@@ -153,7 +153,8 @@ def create_room_submit():
             }
         },
 
-        "game_started": False
+        "game_started": False,
+        "all_ready": False
     }
 
     return redirect(
@@ -195,6 +196,11 @@ def set_secret(room_code, player_name):
         return "Room Not Found"
 
     if request.method == "POST":
+        if rooms[room_code]["game_started"]:
+            return """
+            <h1>⚠ Game Already Started</h1>
+            <h2>You Can Not Change Secret Number Now</h2>
+            """
 
         secret = int(
             request.form["secret"]
@@ -228,11 +234,16 @@ def start_game(room_code, player_name):
         if room["players"][player]["secret"] is None:
 
             return f"""
-            <h1>⚠ All players must set a secret number first.</h1>
+            <script>
 
-            <a href='/multiplayer/{room_code}/{player_name}'>
-                Back
-            </a>
+            alert(
+            '{player} has not set their secret number yet'
+            );
+
+            window.location.href =
+            '/multiplayer/{room_code}/{player_name}';
+
+            </script>
             """
 
     room["game_started"] = True
@@ -377,7 +388,8 @@ def results(room_code):
     return render_template(
         "results.html",
         winner=winner,
-        leaderboard=leaderboard
+        leaderboard=leaderboard,
+        room_code=room_code
     )
 
 
@@ -391,11 +403,21 @@ def multiplayer(room_code, player_name):
 
     room = rooms[room_code]
 
+    ready = True
+
+    for player in room["players"]:
+
+        if room["players"][player]["secret"] is None:
+            ready = False
+
+        print(room["players"])
+
     return render_template(
         "multiplayer.html",
         room_code=room_code,
         player_name=player_name,
-        players=room["players"]
+        players=room["players"],
+        ready=ready
     )
 
 def all_finished(room):
@@ -443,6 +465,38 @@ def update_hall_of_fame(name, attempt, mode):
     with open(HALL_OF_FAME_FILE, "w") as f:
         json.dump(fame, f, indent=4)
 
+@app.route("/replay/<room_code>")
+def replay(room_code):
+
+    if room_code not in rooms:
+        return "Room Not Found"
+
+    room = rooms[room_code]
+
+    room["game_started"] = False
+
+    for player in room["players"]:
+
+        room["players"][player]["secret"] = None
+        room["players"][player]["attempts"] = 0
+        room["players"][player]["finished"] = False
+        room["players"][player]["guessed"] = []
+        room["players"][player]["guess_attempts"] = {}
+
+    room["all_ready"] = False
+    room["game_started"] = False
+
+    return """
+    <script>
+
+    alert(
+    '✅ Room Reset Successfully!\\n\\nAll players must join again and set new secret numbers.'
+    );
+
+    window.location.href = '/';
+
+    </script>
+    """
 # -------------------------
 # Hall Of Fame
 # -------------------------

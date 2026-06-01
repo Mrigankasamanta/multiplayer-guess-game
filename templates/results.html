@@ -4,194 +4,191 @@
 
 <head>
 
-```
-<meta charset="UTF-8">
+    ```
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Results</title>
+    <title>Results</title>
 
-<link rel="stylesheet"
-    href="{{ url_for('static',
+    <link rel="stylesheet" href="{{ url_for('static',
     filename='css/style.css') }}">
-```
+    ```
 
 </head>
 
 <body>
 
-```
-<h1>🏆 Final Results</h1>
+    ```
+    <h1>🏆 Final Results</h1>
 
-<h1 class="winner">
+    <h1 class="winner">
 
-    🏆 Winner:
-    {{ winner }}
+        🏆 Winner:
+        {{ winner }}
 
-</h1>
+    </h1>
 
-<hr>
+    <hr>
 
-{% for player in leaderboard %}
+    {% for player in leaderboard %}
 
-<hr>
+    <hr>
 
-<h3>
+    <h3>
 
-    {{ loop.index }}.
+        {{ loop.index }}.
 
-    {{ player[0] }}
+        {{ player[0] }}
 
-</h3>
+    </h3>
 
-<p>
+    <p>
 
-    🔢 Total Attempts:
+        🔢 Total Attempts:
 
-    {{ player[1]["attempts"] }}
+        {{ player[1]["attempts"] }}
 
-</p>
+    </p>
 
-<ul>
+    <ul>
 
-    {% for target, count in player[1]["guess_attempts"].items() %}
+        {% for target, count in player[1]["guess_attempts"].items() %}
 
-    <li>
+        <li>
 
-        {{ target }}
+            {{ target }}
 
-        →
+            →
 
-        {{ count }}
+            {{ count }}
 
-        attempts
+            attempts
 
-    </li>
+        </li>
+
+        {% endfor %}
+
+    </ul>
 
     {% endfor %}
 
-</ul>
+    <br><br>
 
-{% endfor %}
+    <a href="/">
 
-<br><br>
+        <button onclick="playClick()">
 
-<a href="/">
+            🏠 Home
 
-    <button onclick="playClick()">
+        </button>
 
-        🏠 Home
+    </a>
 
-    </button>
+    <br><br>
 
-</a>
+    <a href="/replay/{{ room_code }}">
 
-<!-- Sound Controls -->
+        <button onclick="playClick()">
 
-<div class="sound-controls">
+            🔄 Replay Same Room
 
-    <button
-        id="musicBtn"
-        onclick="toggleMusic()">
+        </button>
 
-        🎵 Music ON
+    </a>
 
-    </button>
+    <!-- Sound Controls -->
 
-    <button
-        id="soundBtn"
-        onclick="toggleSound()">
+    <div class="sound-controls">
 
-        🔊 Sound ON
+        <button id="musicBtn" onclick="toggleMusic()">
 
-    </button>
+            🎵 Music ON
 
-</div>
+        </button>
 
-<!-- Background Music -->
+        <button id="soundBtn" onclick="toggleSound()">
 
-<audio
-    id="bgMusic"
-    loop>
+            🔊 Sound ON
 
-    <source
-        src="{{ url_for('static',
-        filename='music/bg_music.mp3') }}"
-        type="audio/mpeg">
+        </button>
 
-</audio>
+    </div>
 
-<!-- Click Sound -->
+    <!-- Background Music -->
 
-<audio
-    id="clickSound">
+    <audio id="bgMusic" loop>
 
-    <source
-        src="{{ url_for('static',
-        filename='sounds/click.mp3') }}"
-        type="audio/mpeg">
+        <source src="{{ url_for('static',
+        filename='music/bg_music.mp3') }}" type="audio/mpeg">
 
-</audio>
+    </audio>
 
-<!-- Win Sound -->
+    <!-- Click Sound -->
 
-<audio
-    id="winSound">
+    <audio id="clickSound">
 
-    <source
-        src="{{ url_for('static',
-        filename='sounds/win.mp3') }}"
-        type="audio/mpeg">
+        <source src="{{ url_for('static',
+        filename='sounds/click.mp3') }}" type="audio/mpeg">
 
-</audio>
+    </audio>
 
-<!-- Confetti -->
+    <!-- Win Sound -->
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <audio id="winSound">
 
-<script>
+        <source src="{{ url_for('static',
+        filename='sounds/win.mp3') }}" type="audio/mpeg">
 
-    confetti({
+    </audio>
 
-        particleCount: 200,
+    <!-- Confetti -->
 
-        spread: 120,
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-        origin: {
-            y: 0.6
-        }
+    <script>
 
-    });
+        confetti({
 
-    if(
-        localStorage.getItem(
-            "soundEnabled"
-        ) !== "false"
-    ){
+            particleCount: 200,
 
-        const win =
-        document.getElementById(
-            "winSound"
-        );
+            spread: 120,
 
-        if(win){
+            origin: {
+                y: 0.6
+            }
 
-            win.play();
+        });
+
+        if (
+            localStorage.getItem(
+                "soundEnabled"
+            ) !== "false"
+        ) {
+
+            const win =
+                document.getElementById(
+                    "winSound"
+                );
+
+            if (win) {
+
+                win.play();
+
+            }
 
         }
 
-    }
+    </script>
 
-</script>
+    <!-- Sound JS -->
 
-<!-- Sound JS -->
+    <audio id="bgMusic" loop>
+        <source src="{{ url_for('static', filename='music/bg_music.mp3') }}" type="audio/mpeg">
+    </audio>
 
-<script
-    src="{{ url_for('static',
-    filename='js/sound.js') }}">
-</script>
-```
+    <script src="{{ url_for('static', filename='js/sound.js') }}"></script>
+    ```
 
 </body>
 

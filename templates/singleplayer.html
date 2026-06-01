@@ -4,198 +4,240 @@
 
 <head>
 
-```
-<meta charset="UTF-8">
+    ```
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Single Player</title>
+    <title>Single Player</title>
 
-<link rel="stylesheet"
-    href="{{ url_for('static',
+    <link rel="stylesheet" href="{{ url_for('static',
     filename='css/style.css') }}">
-```
+    ```
 
 </head>
 
 <body>
 
-```
-<h1>
+    ```
+    <h1>
 
-    🎮 Single Player Mode
+        🎮 Single Player Mode
 
-</h1>
+    </h1>
 
-<form method="POST">
+    <form method="POST">
 
-    {% if not session.get("player_name") %}
+        {% if not session.get("player_name") %}
 
-    <input
-        type="text"
-        name="name"
-        placeholder="👤 Your Name"
-        required>
+        <input type="text" name="name" placeholder="👤 Your Name" required>
 
-    <br><br>
+        <br><br>
 
-    {% else %}
+        {% else %}
+
+        <h3>
+
+            👤 Player:
+            {{ session.get("player_name") }}
+
+        </h3>
+
+        {% endif %}
+
+        <input type="number" name="guess" placeholder="🎯 Enter Number (1-100)" required>
+
+        <br><br>
+
+        <button type="submit" onclick="playClick()">
+
+            🎯 Guess
+
+        </button>
+
+    </form>
+
+    <br>
+
+    <h2>
+
+        {{ message }}
+
+    </h2>
+
+    <audio id="winSound">
+
+        <source src="{{ url_for('static',
+    filename='sounds/win.mp3') }}" type="audio/mpeg">
+
+    </audio>
+
+    <audio id="winSound">
+
+        <source src="{{ url_for('static',
+    filename='sounds/win.mp3') }}" type="audio/mpeg">
+
+    </audio>
+
+    <audio id="wrongSound">
+
+        <source src="{{ url_for('static',
+    filename='sounds/wrong.mp3') }}" type="audio/mpeg">
+
+    </audio>
+
+    <script>
+
+        window.onload = function () {
+
+            const msg =
+                `{{ message }}`;
+
+            if (!msg)
+                return;
+
+            const lowerMsg =
+                msg.toLowerCase();
+
+            if (
+                lowerMsg.includes("correct")
+                ||
+                lowerMsg.includes("won")
+                ||
+                lowerMsg.includes("winner")
+            ) {
+
+                const win =
+                    document.getElementById(
+                        "winSound"
+                    );
+
+                if (win) {
+
+                    win.play()
+                        .catch(() => { });
+
+                }
+
+            }
+
+            else {
+
+                const wrong =
+                    document.getElementById(
+                        "wrongSound"
+                    );
+
+                if (wrong) {
+
+                    wrong.play()
+                        .catch(() => { });
+
+                }
+
+            }
+
+        }
+
+    </script>
+
+    <hr>
 
     <h3>
 
-        👤 Player:
-        {{ session.get("player_name") }}
+        🏆 Top 5 Scores
 
     </h3>
 
-    {% endif %}
+    <table border="1">
 
-    <input
-        type="number"
-        name="guess"
-        placeholder="🎯 Enter Number (1-100)"
-        required>
+        <tr>
 
-    <br><br>
+            <th>Rank</th>
 
-    <button
-        type="submit"
-        onclick="playClick()">
+            <th>Name</th>
 
-        🎯 Guess
+            <th>Attempts</th>
 
-    </button>
+        </tr>
 
-</form>
+        {% for score in scores %}
 
-<br>
+        <tr>
 
-<h2>
+            <td>{{ loop.index }}</td>
 
-    {{ message }}
+            <td>{{ score.name }}</td>
 
-</h2>
+            <td>{{ score.score }}</td>
 
-<hr>
+        </tr>
 
-<h3>
+        {% endfor %}
 
-    🏆 Top 5 Scores
+    </table>
 
-</h3>
+    <hr>
 
-<table border="1">
+    <form action="/reset-player" method="POST">
 
-    <tr>
+        <button type="submit" onclick="playClick()">
 
-        <th>Rank</th>
+            🔄 Change Player
 
-        <th>Name</th>
+        </button>
 
-        <th>Attempts</th>
+    </form>
 
-    </tr>
+    <br>
 
-    {% for score in scores %}
+    <a href="/">
 
-    <tr>
+        <button onclick="playClick()">
 
-        <td>{{ loop.index }}</td>
+            🏠 Home
 
-        <td>{{ score.name }}</td>
+        </button>
 
-        <td>{{ score.score }}</td>
+    </a>
 
-    </tr>
+    <!-- Sound Controls -->
 
-    {% endfor %}
+    <div class="sound-controls">
 
-</table>
+        <button id="musicBtn" onclick="toggleMusic()">
 
-<hr>
+            🎵 Music ON
 
-<form
-    action="/reset-player"
-    method="POST">
+        </button>
 
-    <button
-        type="submit"
-        onclick="playClick()">
+        <button id="soundBtn" onclick="toggleSound()">
 
-        🔄 Change Player
+            🔊 Sound ON
 
-    </button>
+        </button>
 
-</form>
+    </div>
 
-<br>
+    <!-- Background Music -->
 
-<a href="/">
+    <!-- Click Sound -->
 
-    <button
-        onclick="playClick()">
+    <audio id="clickSound">
 
-        🏠 Home
+        <source src="{{ url_for('static',
+        filename='sounds/click.mp3') }}" type="audio/mpeg">
 
-    </button>
+    </audio>
 
-</a>
+    <!-- Sound JS -->
 
-<!-- Sound Controls -->
+    <audio id="bgMusic" loop>
+        <source src="{{ url_for('static', filename='music/bg_music.mp3') }}" type="audio/mpeg">
+    </audio>
 
-<div class="sound-controls">
-
-    <button
-        id="musicBtn"
-        onclick="toggleMusic()">
-
-        🎵 Music ON
-
-    </button>
-
-    <button
-        id="soundBtn"
-        onclick="toggleSound()">
-
-        🔊 Sound ON
-
-    </button>
-
-</div>
-
-<!-- Background Music -->
-
-<audio
-    id="bgMusic"
-    loop>
-
-    <source
-        src="{{ url_for('static',
-        filename='music/bg_music.mp3') }}"
-        type="audio/mpeg">
-
-</audio>
-
-<!-- Click Sound -->
-
-<audio
-    id="clickSound">
-
-    <source
-        src="{{ url_for('static',
-        filename='sounds/click.mp3') }}"
-        type="audio/mpeg">
-
-</audio>
-
-<!-- Sound JS -->
-
-<script
-    src="{{ url_for('static',
-    filename='js/sound.js') }}">
-</script>
-```
+    <script src="{{ url_for('static', filename='js/sound.js') }}"></script>
+    ```
 
 </body>
 

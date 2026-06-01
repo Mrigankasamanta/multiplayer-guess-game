@@ -410,15 +410,15 @@ table {
 
     position: fixed;
 
-    top: 15px;
+    bottom: 20px;
 
-    right: 15px;
+    right: 20px;
 
     display: flex;
 
     flex-direction: column;
 
-    gap: 8px;
+    gap: 10px;
 
     z-index: 9999;
 
@@ -438,7 +438,7 @@ table {
 
     .sound-controls{
 
-        top: 10px;
+        bottom: 15px;
 
         right: 10px;
 

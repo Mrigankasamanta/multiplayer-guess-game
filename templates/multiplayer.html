@@ -4,169 +4,166 @@
 
 <head>
 
-```
-<meta charset="UTF-8">
+    ```
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Multiplayer Game</title>
+    <title>Multiplayer Game</title>
 
-<link rel="stylesheet"
-    href="{{ url_for('static', filename='css/style.css') }}">
-```
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    ```
 
 </head>
 
 <body>
 
-```
-<h1 class="game-title">
+    ```
+    <h1 class="game-title">
 
-    🎮 Multiplayer Guess Game
+        🎮 Multiplayer Guess Game
 
-</h1>
+    </h1>
 
-<h2>
+    <h2>
 
-    🏠 Room:
-    {{ room_code }}
+        🏠 Room:
+        {{ room_code }}
 
-</h2>
+    </h2>
 
-<h3>
+    <h3>
 
-    👤 Player:
-    {{ player_name }}
+        👤 Player:
+        {{ player_name }}
 
-</h3>
+    </h3>
 
-<a href="/set-secret/{{ room_code }}/{{ player_name }}">
+    <a href="/set-secret/{{ room_code }}/{{ player_name }}">
 
-    <button onclick="playClick()">
+        <button onclick="playClick()">
 
-        🔒 Set Secret Number
+            🔒 Set Secret Number
 
-    </button>
+        </button>
 
-</a>
+    </a>
 
-<br><br>
+    <br><br>
 
-<a href="/start-game/{{ room_code }}/{{ player_name }}">
+    <a href="/start-game/{{ room_code }}/{{ player_name }}">
 
-    <button onclick="playClick()">
+        <button onclick="playClick()">
 
-        ▶ Start Game
+            ▶ Start Game
 
-    </button>
+        </button>
 
-</a>
+    </a>
 
-<hr>
+    <hr>
 
-<h3>
+    <h3>
 
-    👥 Players In Room
+        👥 Players In Room
 
-</h3>
+    </h3>
 
-{% for player, data in players.items() %}
+    {% for player, data in players.items() %}
 
-<p>
+    <p>
 
-    👤 {{ player }}
+        👤 {{ player }}
 
-</p>
+    </p>
 
-{% endfor %}
+    {% endfor %}
 
-<hr>
+    <hr>
 
-<h2>
+    {% if ready %}
 
-    {{ message }}
+    <h2>
+        ✅ All Players Ready
+    </h2>
 
-</h2>
+    <h3>
+        🎮 Now Start The Game
+    </h3>
 
-<br>
+    {% endif %}
 
-<a href="/">
+    <h2>
 
-    <button onclick="playClick()">
+        {{ message }}
 
-        🏠 Home
+    </h2>
 
-    </button>
+    <br>
 
-</a>
+    <a href="/">
 
-<!-- Sound Controls -->
+        <button onclick="playClick()">
 
-<div class="sound-controls">
+            🏠 Home
 
-    <button
-        id="musicBtn"
-        onclick="toggleMusic()">
+        </button>
 
-        🎵 Music ON
+    </a>
 
-    </button>
+    <!-- Sound Controls -->
 
-    <button
-        id="soundBtn"
-        onclick="toggleSound()">
+    <div class="sound-controls">
 
-        🔊 Sound ON
+        <button id="musicBtn" onclick="toggleMusic()">
 
-    </button>
+            🎵 Music ON
 
-</div>
+        </button>
 
-<!-- Background Music -->
+        <button id="soundBtn" onclick="toggleSound()">
 
-<audio
-    id="bgMusic"
-    loop>
+            🔊 Sound ON
 
-    <source
-        src="{{ url_for('static',
-        filename='music/bg_music.mp3') }}"
-        type="audio/mpeg">
+        </button>
 
-</audio>
+    </div>
 
-<!-- Click Sound -->
+    <!-- Background Music -->
 
-<audio
-    id="clickSound">
+    <audio id="bgMusic" loop>
 
-    <source
-        src="{{ url_for('static',
-        filename='sounds/click.mp3') }}"
-        type="audio/mpeg">
+        <source src="{{ url_for('static',
+        filename='music/bg_music.mp3') }}" type="audio/mpeg">
 
-</audio>
+    </audio>
 
-<!-- Join Sound -->
+    <!-- Click Sound -->
 
-<audio
-    id="joinSound">
+    <audio id="clickSound">
 
-    <source
-        src="{{ url_for('static',
-        filename='sounds/join.mp3') }}"
-        type="audio/mpeg">
+        <source src="{{ url_for('static',
+        filename='sounds/click.mp3') }}" type="audio/mpeg">
 
-</audio>
+    </audio>
 
-<!-- Sound JS -->
+    <!-- Join Sound -->
 
-<script
-    src="{{ url_for('static',
-    filename='js/sound.js') }}">
-</script>
-```
+    <audio id="joinSound">
+
+        <source src="{{ url_for('static',
+        filename='sounds/join.mp3') }}" type="audio/mpeg">
+
+    </audio>
+
+    <!-- Sound JS -->
+
+    <audio id="bgMusic" loop>
+        <source src="{{ url_for('static', filename='music/bg_music.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <script src="{{ url_for('static', filename='js/sound.js') }}"></script>
+    ```
 
 </body>
 

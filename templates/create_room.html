@@ -5,13 +5,11 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Create Room</title>
 
-    <link rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
 </head>
 
@@ -19,21 +17,13 @@
 
     <h1>🏠 Create Room</h1>
 
-    <form
-        action="/create-room-submit"
-        method="POST">
+    <form action="/create-room-submit" method="POST">
 
-        <input
-            type="text"
-            name="name"
-            placeholder="👤 Enter Your Name"
-            required>
+        <input type="text" name="name" placeholder="👤 Enter Your Name" required>
 
         <br><br>
 
-        <button
-            type="submit"
-            onclick="playClick()">
+        <button type="submit" onclick="playClick()">
 
             🚀 Create Room
 
@@ -45,9 +35,7 @@
 
     <a href="/">
 
-        <button
-            type="button"
-            onclick="playClick()">
+        <button type="button" onclick="playClick()">
 
             🏠 Home
 
@@ -59,17 +47,13 @@
 
     <div class="sound-controls">
 
-        <button
-            id="musicBtn"
-            onclick="toggleMusic()">
+        <button id="musicBtn" onclick="toggleMusic()">
 
             🎵 Music ON
 
         </button>
 
-        <button
-            id="soundBtn"
-            onclick="toggleSound()">
+        <button id="soundBtn" onclick="toggleSound()">
 
             🔊 Sound ON
 
@@ -79,37 +63,29 @@
 
     <!-- Background Music -->
 
-    <audio
-        id="bgMusic"
-        loop>
+    <audio id="bgMusic" loop>
 
-        <source
-            src="{{ url_for('static',
-            filename='music/bg_music.mp3') }}"
-            type="audio/mpeg">
+        <source src="{{ url_for('static',
+            filename='music/bg_music.mp3') }}" type="audio/mpeg">
 
     </audio>
 
     <!-- Click Sound -->
 
-    <audio
-        id="clickSound">
+    <audio id="clickSound">
 
-        <source
-            src="{{ url_for('static',
-            filename='sounds/click.mp3') }}"
-            type="audio/mpeg">
+        <source src="{{ url_for('static',
+            filename='sounds/click.mp3') }}" type="audio/mpeg">
 
     </audio>
 
     <!-- Sound JS -->
 
-    <script
-        src="{{ url_for('static',
-        filename='js/sound.js') }}">
+    <audio id="bgMusic" loop>
+        <source src="{{ url_for('static', filename='music/bg_music.mp3') }}" type="audio/mpeg">
+    </audio>
 
-    </script>
-
+    <script src="{{ url_for('static', filename='js/sound.js') }}"></script>
 </body>
 
 </html>

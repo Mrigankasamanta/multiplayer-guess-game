@@ -4,123 +4,97 @@
 
 <head>
 
-```
-<meta charset="UTF-8">
+    ```
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Join Room</title>
+    <title>Join Room</title>
 
-<link rel="stylesheet"
-    href="{{ url_for('static', filename='css/style.css') }}">
-```
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    ```
 
 </head>
 
 <body>
 
-```
-<h1>👥 Join Room</h1>
+    ```
+    <h1>👥 Join Room</h1>
 
-<form
-    action="/join-room-submit"
-    method="POST">
+    <form action="/join-room-submit" method="POST">
 
-    <input
-        type="text"
-        name="name"
-        placeholder="👤 Enter Your Name"
-        required>
+        <input type="text" name="name" placeholder="👤 Enter Your Name" required>
 
-    <br><br>
+        <br><br>
 
-    <input
-        type="text"
-        name="room_code"
-        placeholder="🎮 Enter Room Code"
-        required>
+        <input type="text" name="room_code" placeholder="🎮 Enter Room Code" required>
 
-    <br><br>
+        <br><br>
 
-    <button
-        type="submit"
-        onclick="playClick()">
+        <button type="submit" onclick="playClick()">
 
-        🚀 Join Room
+            🚀 Join Room
 
-    </button>
+        </button>
 
-</form>
+    </form>
 
-<br>
+    <br>
 
-<a href="/">
+    <a href="/">
 
-    <button
-        type="button"
-        onclick="playClick()">
+        <button type="button" onclick="playClick()">
 
-        🏠 Home
+            🏠 Home
 
-    </button>
+        </button>
 
-</a>
+    </a>
 
-<!-- Sound Controls -->
+    <!-- Sound Controls -->
 
-<div class="sound-controls">
+    <div class="sound-controls">
 
-    <button
-        id="musicBtn"
-        onclick="toggleMusic()">
+        <button id="musicBtn" onclick="toggleMusic()">
 
-        🎵 Music ON
+            🎵 Music ON
 
-    </button>
+        </button>
 
-    <button
-        id="soundBtn"
-        onclick="toggleSound()">
+        <button id="soundBtn" onclick="toggleSound()">
 
-        🔊 Sound ON
+            🔊 Sound ON
 
-    </button>
+        </button>
 
-</div>
+    </div>
 
-<!-- Background Music -->
+    <!-- Background Music -->
 
-<audio
-    id="bgMusic"
-    loop>
+    <audio id="bgMusic" loop>
 
-    <source
-        src="{{ url_for('static',
-        filename='music/bg_music.mp3') }}"
-        type="audio/mpeg">
+        <source src="{{ url_for('static',
+        filename='music/bg_music.mp3') }}" type="audio/mpeg">
 
-</audio>
+    </audio>
 
-<!-- Click Sound -->
+    <!-- Click Sound -->
 
-<audio
-    id="clickSound">
+    <audio id="clickSound">
 
-    <source
-        src="{{ url_for('static',
-        filename='sounds/click.mp3') }}"
-        type="audio/mpeg">
+        <source src="{{ url_for('static',
+        filename='sounds/click.mp3') }}" type="audio/mpeg">
 
-</audio>
+    </audio>
 
-<!-- Sound JS -->
+    <!-- Sound JS -->
 
-<script
-    src="{{ url_for('static',
-    filename='js/sound.js') }}">
-</script>
-```
+    <audio id="bgMusic" loop>
+        <source src="{{ url_for('static', filename='music/bg_music.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <script src="{{ url_for('static', filename='js/sound.js') }}"></script>
+    ```
 
 </body>
 

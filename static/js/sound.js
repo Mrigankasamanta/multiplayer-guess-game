@@ -1,161 +1,134 @@
 let musicEnabled =
-localStorage.getItem("musicEnabled")
-!== "false";
+    localStorage.getItem("musicEnabled") !== "false";
 
 let soundEnabled =
-localStorage.getItem("soundEnabled")
-!== "false";
+    localStorage.getItem("soundEnabled") !== "false";
 
-document.addEventListener(
-"DOMContentLoaded",
-function(){
+document.addEventListener("DOMContentLoaded", function () {
 
-```
-const music =
-document.getElementById(
-    "bgMusic"
-);
+    const music =
+        document.getElementById("bgMusic");
 
-const musicBtn =
-document.getElementById(
-    "musicBtn"
-);
+    const musicBtn =
+        document.getElementById("musicBtn");
 
-const soundBtn =
-document.getElementById(
-    "soundBtn"
-);
+    const soundBtn =
+        document.getElementById("soundBtn");
 
-if(musicBtn){
+    if (musicBtn) {
 
-    musicBtn.innerHTML =
-    musicEnabled
-    ? "🎵 Music ON"
-    : "🔇 Music OFF";
-
-}
-
-if(soundBtn){
-
-    soundBtn.innerHTML =
-    soundEnabled
-    ? "🔊 Sound ON"
-    : "🔇 Sound OFF";
-
-}
-
-if(music){
-
-    music.volume = 0.3;
-
-    if(musicEnabled){
-
-        music.play()
-        .catch(() => {});
+        musicBtn.innerHTML =
+            musicEnabled
+                ? "🎵 Music ON"
+                : "🔇 Music OFF";
 
     }
 
-}
-```
+    if (soundBtn) {
+
+        soundBtn.innerHTML =
+            soundEnabled
+                ? "🔊 Sound ON"
+                : "🔇 Sound OFF";
+
+    }
+
+    if (music) {
+
+        music.volume = 0.3;
+
+        const shouldPlay =
+            localStorage.getItem("musicEnabled")
+            !== "false";
+
+        if (shouldPlay) {
+
+            music.play()
+                .catch(() => { });
+
+        }
+
+    }
 
 });
 
-function toggleMusic(){
+function toggleMusic() {
 
-```
-const music =
-document.getElementById(
-    "bgMusic"
-);
+    const music =
+        document.getElementById("bgMusic");
 
-const btn =
-document.getElementById(
-    "musicBtn"
-);
+    const btn =
+        document.getElementById("musicBtn");
 
-musicEnabled =
-!musicEnabled;
+    musicEnabled = !musicEnabled;
 
-localStorage.setItem(
-    "musicEnabled",
-    musicEnabled
-);
+    localStorage.setItem(
+        "musicEnabled",
+        musicEnabled
+    );
 
-if(music){
+    if (music) {
 
-    if(musicEnabled){
+        if (musicEnabled) {
 
-        music.play();
+            music.play();
 
-    }
+        } else {
 
-    else{
+            music.pause();
 
-        music.pause();
+        }
 
     }
 
-}
+    if (btn) {
 
-if(btn){
+        btn.innerHTML =
+            musicEnabled
+                ? "🎵 Music ON"
+                : "🔇 Music OFF";
 
-    btn.innerHTML =
-    musicEnabled
-    ? "🎵 Music ON"
-    : "🔇 Music OFF";
-
-}
-```
+    }
 
 }
 
-function toggleSound(){
+function toggleSound() {
 
-```
-soundEnabled =
-!soundEnabled;
+    soundEnabled = !soundEnabled;
 
-localStorage.setItem(
-    "soundEnabled",
-    soundEnabled
-);
+    localStorage.setItem(
+        "soundEnabled",
+        soundEnabled
+    );
 
-const btn =
-document.getElementById(
-    "soundBtn"
-);
+    const btn =
+        document.getElementById("soundBtn");
 
-if(btn){
+    if (btn) {
 
-    btn.innerHTML =
-    soundEnabled
-    ? "🔊 Sound ON"
-    : "🔇 Sound OFF";
+        btn.innerHTML =
+            soundEnabled
+                ? "🔊 Sound ON"
+                : "🔇 Sound OFF";
 
-}
-```
+    }
 
 }
 
-function playClick(){
+function playClick() {
 
-```
-if(!soundEnabled)
-return;
+    if (!soundEnabled)
+        return;
 
-const click =
-document.getElementById(
-    "clickSound"
-);
+    const click =
+        document.getElementById("clickSound");
 
-if(click){
+    if (click) {
 
-    click.currentTime = 0;
+        click.currentTime = 0;
 
-    click.play()
-    .catch(() => {});
+        click.play();
 
-}
-```
+    }
 
 }

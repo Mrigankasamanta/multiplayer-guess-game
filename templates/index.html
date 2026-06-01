@@ -4,116 +4,104 @@
 
 <head>
 
-```
-<meta charset="UTF-8">
+    ```
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Guess Game</title>
+    <title>Guess Game</title>
 
-<link rel="stylesheet"
-      href="{{ url_for('static',
+    <link rel="stylesheet" href="{{ url_for('static',
       filename='css/style.css') }}">
-```
+    ```
 
 </head>
 
 <body>
 
-```
-<div class="sound-controls">
+    ```
+    <div class="sound-controls">
 
-    <button
-    id="musicBtn"
-    onclick="toggleMusic()">
+        <button id="musicBtn" onclick="toggleMusic()">
 
-        🎵 Music ON
-
-    </button>
-
-    <button
-    id="soundBtn"
-    onclick="toggleSound()">
-
-        🔊 Sound ON
-
-    </button>
-
-</div>
-
-<h1>🎮 Number Guess Game</h1>
-
-<div class="menu-container">
-
-    <a href="/single">
-
-        <button onclick="playClick()">
-
-            🎯 Single Player
+            🎵 Music ON
 
         </button>
 
-    </a>
+        <button id="soundBtn" onclick="toggleSound()">
 
-    <a href="/create-room">
-
-        <button onclick="playClick()">
-
-            🏠 Create Room
+            🔊 Sound ON
 
         </button>
 
-    </a>
+    </div>
 
-    <a href="/join-room">
+    <h1>🎮 Number Guess Game</h1>
 
-        <button onclick="playClick()">
+    <div class="menu-container">
 
-            👥 Join Room
+        <a href="/single">
 
-        </button>
+            <button onclick="playClick()">
 
-    </a>
+                🎯 Single Player
 
-    <a href="/hall">
+            </button>
 
-        <button onclick="playClick()">
+        </a>
 
-            🏆 Hall Of Fame
+        <a href="/create-room">
 
-        </button>
+            <button onclick="playClick()">
 
-    </a>
+                🏠 Create Room
 
-</div>
+            </button>
 
-<audio
-id="bgMusic"
-loop>
+        </a>
 
-    <source
-    src="{{ url_for('static',
-    filename='music/bg_music.mp3') }}"
-    type="audio/mpeg">
+        <a href="/join-room">
 
-</audio>
+            <button onclick="playClick()">
 
-<audio
-id="clickSound">
+                👥 Join Room
 
-    <source
-    src="{{ url_for('static',
-    filename='sounds/click.mp3') }}"
-    type="audio/mpeg">
+            </button>
 
-</audio>
+        </a>
 
-<script
-src="{{ url_for('static',
-filename='js/sound.js') }}">
-</script>
-```
+        <a href="/hall">
+
+            <button onclick="playClick()">
+
+                🏆 Hall Of Fame
+
+            </button>
+
+        </a>
+
+    </div>
+
+    <audio id="bgMusic" loop>
+
+        <source src="{{ url_for('static',
+    filename='music/bg_music.mp3') }}" type="audio/mpeg">
+
+    </audio>
+
+    <audio id="clickSound">
+
+        <source src="{{ url_for('static',
+    filename='sounds/click.mp3') }}" type="audio/mpeg">
+
+    </audio>
+
+    <audio id="bgMusic" loop>
+        <source src="{{ url_for('static', filename='music/bg_music.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <script src="{{ url_for('static', filename='js/sound.js') }}"></script>
+    ```
 
 </body>
 

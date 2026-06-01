@@ -3,18 +3,48 @@
         "name": "Mriganka Samanta",
         "mode": "multiplayer",
         "best_attempt": 1,
-        "records": 4
+        "records": 5
     },
     {
         "name": "pritam mondal",
         "mode": "multiplayer",
         "best_attempt": 3,
-        "records": 2
+        "records": 3
     },
     {
         "name": "Rimi Das",
         "mode": "multiplayer",
+        "best_attempt": 1,
+        "records": 3
+    },
+    {
+        "name": "Mintulal Samanta",
+        "mode": "multiplayer",
+        "best_attempt": 1,
+        "records": 5
+    },
+    {
+        "name": "MRIGANKA SAMANTA",
+        "mode": "multiplayer",
         "best_attempt": 3,
+        "records": 2
+    },
+    {
+        "name": "mj",
+        "mode": "multiplayer",
+        "best_attempt": 3,
+        "records": 2
+    },
+    {
+        "name": "nh",
+        "mode": "multiplayer",
+        "best_attempt": 1,
+        "records": 2
+    },
+    {
+        "name": "np",
+        "mode": "multiplayer",
+        "best_attempt": 1,
         "records": 2
     }
 ]
