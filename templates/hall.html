@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Hall Of Fame</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <h1>🏆 Hall Of Fame</h1>
+
+    <hr>
+
+    <h2>🎯 Single Player Legends</h2>
+
+    {% if single_players %}
+
+        <ul>
+
+        {% for player in single_players %}
+
+            <li>
+
+                👑 {{ player.name }}
+
+                |
+
+                Best Attempt:
+                {{ player.best_attempt }}
+
+                |
+
+                Records:
+                {{ player.records }}
+
+            </li>
+
+        {% endfor %}
+
+        </ul>
+
+    {% else %}
+
+        <p>No Single Player Legends Yet</p>
+
+    {% endif %}
+
+    <hr>
+
+    <h2>🎮 Multiplayer Legends</h2>
+
+    {% if multiplayer_players %}
+
+        <ul>
+
+        {% for player in multiplayer_players %}
+
+            <li>
+
+                🏅 {{ player.name }}
+
+                |
+
+                Best Attempt:
+                {{ player.best_attempt }}
+
+                |
+
+                Records:
+                {{ player.records }}
+
+            </li>
+
+        {% endfor %}
+
+        </ul>
+
+    {% else %}
+
+        <p>No Multiplayer Legends Yet</p>
+
+    {% endif %}
+
+    <br><br>
+
+    <a href="/">
+        <button>
+            🏠 Home
+        </button>
+    </a>
+
+</body>
+
+</html>

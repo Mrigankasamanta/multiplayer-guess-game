@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <h1>🏆 Final Results</h1>
+
+    <h1 class="winner">
+        🏆 Winner: {{ winner }}
+    </h1>
+
+    <hr>
+
+    {% for player in leaderboard %}
+
+    <hr>
+
+    <h3>
+        {{ loop.index }}.
+        {{ player[0] }}
+    </h3>
+
+    <p>
+        Total Attempts:
+        {{ player[1]["attempts"] }}
+    </p>
+
+    <ul>
+
+        {% for target, count in player[1]["guess_attempts"].items() %}
+
+        <li>
+            {{ target }}
+            →
+            {{ count }}
+            attempts
+        </li>
+
+        {% endfor %}
+
+    </ul>
+
+    {% endfor %}
+
+    <br><br>
+
+    <a href="/">
+        <button>
+            🏠 Home
+        </button>
+    </a>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+
+        confetti({
+            particleCount: 200,
+            spread: 120,
+            origin: { y: 0.6 }
+        });
+
+    </script>
+
+</body>
+
+</html>

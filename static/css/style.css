@@ -1,0 +1,343 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    background-image: url("/static/images/bg.jpg") !important;
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    background-attachment: fixed;
+
+    min-height: 100vh;
+
+    color: white;
+}
+
+@keyframes zoomBg {
+
+    from {
+        background-size: 100%;
+    }
+
+    to {
+        background-size: 110%;
+    }
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.card {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2,
+h3 {
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+button {
+    background: #00c853;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #00e676;
+}
+
+a {
+    text-decoration: none;
+}
+
+hr {
+    margin: 20px 0;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* Mobile */
+
+@media(max-width:600px) {
+
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* body {
+    background: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+} */
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.card {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2,
+h3 {
+    margin-bottom: 10px;
+}
+
+input {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border-radius: 15px;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    background: rgba(255,255,255,0.15);
+
+    backdrop-filter: blur(10px);
+
+    -webkit-backdrop-filter: blur(10px);
+
+    color: white;
+
+    font-size: 16px;
+
+    outline: none;
+
+    margin-bottom: 15px;
+}
+
+input::placeholder {
+
+    color: rgba(255,255,255,0.8);
+}
+
+button {
+    background: #00c853;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 10px #00ff88,
+        0 0 20px #00ff88,
+        0 0 40px #00ff88;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #00e676;
+}
+
+a {
+    text-decoration: none;
+}
+
+hr {
+    margin: 20px 0;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* Mobile */
+
+@media(max-width:600px) {
+
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+@keyframes float {
+
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.winner {
+    animation: float 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+
+    0% {
+        text-shadow: 0 0 5px cyan;
+    }
+
+    50% {
+        text-shadow:
+            0 0 15px cyan,
+            0 0 25px cyan;
+    }
+
+    100% {
+        text-shadow: 0 0 5px cyan;
+    }
+}
+
+.game-title {
+    animation: glow 2s infinite;
+}
+
+@keyframes float {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.winner {
+    animation: float 2s infinite;
+}
+
+.home-btn{
+    margin-top:20px;
+}
+
+.glass-card {
+
+    background: rgba(0,0,0,0.35);
+
+    backdrop-filter: blur(12px);
+
+    -webkit-backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+}
+
+table {
+
+    background: rgba(0,0,0,0.45);
+
+    backdrop-filter: blur(10px);
+
+    border-radius: 10px;
+}

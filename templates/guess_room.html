@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Guess Room</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <h1>🎯 Guess Players</h1>
+
+    <h2>{{ player_name }}</h2>
+
+    <h3>
+        Total Attempts:
+        {{ attempts }}
+    </h3>
+
+    <hr>
+
+    {% for target in targets %}
+
+    <p>
+
+        {{ target }}
+
+        <a href="/guess/{{ room_code }}/{{ player_name }}/{{ target }}">
+            <button>
+                Guess
+            </button>
+        </a>
+    </p>
+
+    {% endfor %}
+
+</body>
+
+</html>

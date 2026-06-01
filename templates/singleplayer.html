@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Single Player</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <h1>🎮 Single Player Mode</h1>
+
+    <form method="POST">
+
+        {% if not session.get("player_name") %}
+
+        <input type="text" name="name" placeholder="Your Name" required>
+
+        <br><br>
+
+        {% else %}
+
+        <h3>👤 Player: {{ session.get("player_name") }}</h3>
+
+        {% endif %}
+
+        <input type="number" name="guess" placeholder="Enter Number (1-100)" required>
+
+        <br><br>
+
+        <button type="submit">
+            Guess
+        </button>
+
+    </form>
+
+    <br>
+
+    <h2>{{ message }}</h2>
+
+    <hr>
+
+    <h3>🏆 Top 5 Scores</h3>
+
+    <table border="1">
+
+        <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Attempts</th>
+        </tr>
+
+        {% for score in scores %}
+
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ score.name }}</td>
+            <td>{{ score.score }}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <hr>
+
+    <form action="/reset-player" method="POST">
+
+        <button type="submit">
+            Change Player
+        </button>
+
+    </form>
+
+    <br>
+
+    <div class="home-btn">
+
+        <a href="/">
+            <button>
+                🏠 Home
+            </button>
+        </a>
+
+    </div>
+
+</body>
+
+</html>

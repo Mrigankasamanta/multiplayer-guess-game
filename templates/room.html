@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Room {{ room_id }}</title>
+
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <h1>Room: {{ room_id }}</h1>
+
+    <h2>Player: {{ username }}</h2>
+
+    <h3>Players In Room</h3>
+
+    <ul id="players"></ul>
+
+    <hr>
+
+    <input type="number" id="guess" placeholder="Enter Number">
+
+    <button onclick="sendGuess()">
+        Guess
+    </button>
+
+    <h2 id="result"></h2>
+
+    <h1 id="winner"></h1>
+
+    <script>
+
+        console.log("JS Loaded");
+
+        const socket = io();
+
+        console.log(socket);
+
+        socket.on("connect", () => {
+
+            console.log("Connected");
+
+        });
+
+        socket.on("connect_error", (err) => {
+
+            console.log("ERROR:", err);
+
+        });
+
+        console.log("Players received:", players);
+
+        socket.on("update_players", (players) => {
+
+            const list =
+                document.getElementById("players");
+
+            list.innerHTML = "";
+
+            players.forEach(player => {
+
+                const li =
+                    document.createElement("li");
+
+                li.innerText = player;
+
+                list.appendChild(li);
+
+            });
+
+        });
+
+        socket.on("guess_result", (data) => {
+
+            document.getElementById("result")
+                .innerText = data.message;
+
+        });
+
+        socket.on("winner", (data) => {
+
+            document.getElementById("winner")
+                .innerText =
+                `🏆 Winner: ${data.winner} | Attempts: ${data.attempts}`;
+
+        });
+
+        function sendGuess() {
+
+            const guess =
+                document.getElementById("guess").value;
+
+            socket.emit("guess", {
+
+                username: username,
+                room: room,
+                guess: guess
+
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>
